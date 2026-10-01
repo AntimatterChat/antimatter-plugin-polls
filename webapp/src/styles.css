@@ -167,3 +167,47 @@
     color: rgba(var(--center-channel-color-rgb), 0.64);
     font-style: italic;
 }
+
+/* Polls in the Fusion UI: the mockup's .am-poll card, styled by the UI. Only additions here. */
+
+:is(.am-app, .am-layer) .am-poll-opt:disabled {
+    cursor: default;
+}
+
+:is(.am-app, .am-layer) .am-poll-opt:disabled:hover:not(.am-mine) {
+    border-color: var(--am-line);
+}
+
+:is(.am-app, .am-layer) .am-poll-opt .am-faces {
+    display: flex;
+    margin-left: auto;
+}
+
+:is(.am-app, .am-layer) .am-poll-opt .am-faces .am-av {
+    margin-left: -5px;
+    box-shadow: 0 0 0 2px var(--am-side);
+}
+
+:is(.am-app, .am-layer) .am-poll-opt .am-faces .am-av:first-child {
+    margin-left: 0;
+}
+
+:is(.am-app, .am-layer) .am-poll-opt .am-faces + .am-pct {
+    margin-left: 0;
+}
+
+:is(.am-app, .am-layer) .am-poll .polls-fusion-close {
+    margin-left: auto;
+    color: var(--am-anti);
+    font-weight: 600;
+}
+
+:is(.am-app, .am-layer) .am-poll .polls-fusion-close:hover {
+    text-decoration: underline;
+}
+
+:is(.am-app, .am-layer) .am-poll .polls-fusion-error {
+    margin-top: 8px;
+    color: var(--am-danger);
+    font-size: 12.5px;
+}
