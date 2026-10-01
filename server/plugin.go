@@ -26,6 +26,7 @@ type Plugin struct {
 
 	store  *Store
 	router *mux.Router
+	closer closeScheduler
 
 	// now returns the current time in milliseconds; replaced in tests.
 	now func() int64
@@ -38,7 +39,7 @@ func (p *Plugin) OnActivate() error {
 	}
 	p.store = NewStore(p.API)
 	p.router = p.newRouter()
-	return nil
+	return p.startCloseScheduler()
 }
 
 // ServeHTTP serves the plugin's REST API.

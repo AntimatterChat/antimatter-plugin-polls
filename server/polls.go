@@ -115,6 +115,7 @@ func (p *Plugin) createPoll(userID, channelID, rootID string, req *PollRequest) 
 	if err != nil {
 		return nil, err
 	}
+	p.scheduleClose(poll)
 	return poll, nil
 }
 
@@ -183,9 +184,15 @@ func (p *Plugin) closePollAsUser(userID, pollID string) (*PollView, error) {
 	if !p.canClose(userID, poll) {
 		return nil, newAPIError(http.StatusForbidden, "only the poll's creator and the channel's admins can close it")
 	}
+	endedAlready := poll.IsClosed(p.now())
 	poll, err = p.closePoll(poll.ID)
 	if err != nil {
 		return nil, err
+	}
+	// The job closing the poll at its end time isn't needed anymore. (Once it's due, it may be
+	// running: it then closes the poll again, which changes nothing.)
+	if !endedAlready {
+		p.cancelClose(poll)
 	}
 	return poll.View(userID, p.now()), nil
 }
