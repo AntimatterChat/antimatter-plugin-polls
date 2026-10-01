@@ -5,6 +5,8 @@ import type {AnyAction} from 'redux';
 
 import type {GlobalState} from '@mattermost/types/store';
 
+import {UserTypes} from 'mattermost-redux/action_types';
+import {Client4} from 'mattermost-redux/client';
 import {getChannel} from 'mattermost-redux/selectors/entities/channels';
 import {getCurrentTeamId} from 'mattermost-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'mattermost-redux/selectors/entities/users';
@@ -51,6 +53,26 @@ export function loadPoll(store: Store, pollId: string): Promise<Poll | null> {
 export function reloadPolls(store: Store) {
     for (const pollId of Object.keys(getPluginState(store.getState()).polls)) {
         loadPoll(store, pollId);
+    }
+}
+
+const usersLoading = new Set<string>();
+
+// loadMissingUsers fetches the profiles of the users the host doesn't know yet (e.g. voters).
+export async function loadMissingUsers(store: Store, userIds: string[]) {
+    const profiles = store.getState().entities.users.profiles;
+    const missing = [...new Set(userIds)].filter((id) => !profiles[id] && !usersLoading.has(id));
+    if (!missing.length) {
+        return;
+    }
+    missing.forEach((id) => usersLoading.add(id));
+    try {
+        const users = await Client4.getProfilesByIds(missing);
+        store.dispatch({type: UserTypes.RECEIVED_PROFILES_LIST, data: users});
+    } catch (err) {
+        logError('failed to load users', err);
+    } finally {
+        missing.forEach((id) => usersLoading.delete(id));
     }
 }
 

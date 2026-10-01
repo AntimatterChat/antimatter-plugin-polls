@@ -3,13 +3,11 @@
 
 import {useCallback, useEffect, useMemo, useState} from 'react';
 import {useIntl} from 'react-intl';
-import {useDispatch, useSelector, useStore} from 'react-redux';
-import type {AnyAction} from 'redux';
+import {useSelector, useStore} from 'react-redux';
 
 import type {GlobalState} from '@mattermost/types/store';
 import type {UserProfile} from '@mattermost/types/users';
 
-import {getMissingProfilesByIds} from 'mattermost-redux/actions/users';
 import {Permissions} from 'mattermost-redux/constants';
 import {getChannel, getMyChannelMember} from 'mattermost-redux/selectors/entities/channels';
 import {getTeammateNameDisplaySetting} from 'mattermost-redux/selectors/entities/preferences';
@@ -17,7 +15,7 @@ import {haveIChannelPermission} from 'mattermost-redux/selectors/entities/roles'
 import {getCurrentUserId} from 'mattermost-redux/selectors/entities/users';
 import {displayUsername} from 'mattermost-redux/utils/user_utils';
 
-import {closePoll, loadPoll, logError, toggleVote, type Store} from '../actions';
+import {closePoll, loadMissingUsers, loadPoll, logError, toggleVote, type Store} from '../actions';
 import {endsIn, getPoll} from '../selectors';
 import type {Poll} from '../types/poll';
 
@@ -93,16 +91,16 @@ export function canClosePoll(state: GlobalState, poll: Poll) {
 // useVoters loads the users who voted on a poll (unless it's anonymous) and returns their
 // profiles (as far as they're loaded) and display names, by user ID.
 export function useVoters(poll: Poll) {
-    const dispatch = useDispatch();
+    const store = useStore() as unknown as Store;
     const key = poll.options.flatMap((option) => option.voters || []).sort().join(',');
     const profiles = useSelector((state: GlobalState) => state.entities.users.profiles);
     const nameDisplay = useSelector(getTeammateNameDisplaySetting);
 
     useEffect(() => {
         if (key) {
-            dispatch(getMissingProfilesByIds([...new Set(key.split(','))]) as unknown as AnyAction);
+            loadMissingUsers(store, key.split(','));
         }
-    }, [key, dispatch]);
+    }, [key, store]);
 
     return useMemo(() => {
         const voters: {[userId: string]: {user: UserProfile; name: string}} = {};

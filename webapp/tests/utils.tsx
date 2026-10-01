@@ -5,7 +5,7 @@ import {render} from '@testing-library/react';
 import React from 'react';
 import {IntlProvider} from 'react-intl';
 import {Provider} from 'react-redux';
-import {applyMiddleware, createStore, type AnyAction, type Dispatch, type Middleware} from 'redux';
+import {createStore, type AnyAction} from 'redux';
 
 import type {GlobalState} from '@mattermost/types/store';
 
@@ -51,14 +51,6 @@ export function makeState({polls = [], users = [], channelAdmin = false}: TestSt
     } as unknown as GlobalState;
 }
 
-// Runs thunks (the host store does too), without any request: they resolve to nothing.
-const thunks: Middleware = () => (next: Dispatch) => (action: unknown) => {
-    if (typeof action === 'function') {
-        return Promise.resolve({data: []});
-    }
-    return next(action as AnyAction);
-};
-
 // makeStore returns a store whose actions go through this plugin's reducer.
 export function makeStore(initial: GlobalState): PluginStore {
     const pluginKey = `plugins-${manifest.id}`;
@@ -70,7 +62,7 @@ export function makeStore(initial: GlobalState): PluginStore {
             return current;
         }
         return {...current, [pluginKey]: next} as GlobalState;
-    }, initial, applyMiddleware(thunks)) as unknown as PluginStore;
+    }, initial) as unknown as PluginStore;
 }
 
 export function renderWithStore(ui: React.ReactElement, store: PluginStore) {
