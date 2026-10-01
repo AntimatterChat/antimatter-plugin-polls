@@ -24,6 +24,7 @@ func (p *Plugin) newRouter() *mux.Router {
 	api.HandleFunc("/polls/{poll_id:[a-z0-9]{26}}/vote", p.handleVote(true)).Methods(http.MethodPost)
 	api.HandleFunc("/polls/{poll_id:[a-z0-9]{26}}/unvote", p.handleVote(false)).Methods(http.MethodPost)
 	api.HandleFunc("/polls/{poll_id:[a-z0-9]{26}}/close", p.handleClosePoll).Methods(http.MethodPost)
+	api.HandleFunc("/dialog", p.handleDialog).Methods(http.MethodPost)
 
 	return router
 }
