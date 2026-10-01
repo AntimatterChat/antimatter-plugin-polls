@@ -211,3 +211,17 @@
     color: var(--am-danger);
     font-size: 12.5px;
 }
+
+:is(.am-app, .am-layer) .am-btn.polls-fusion-add {
+    margin-bottom: 16px;
+}
+
+:is(.am-app, .am-layer) .am-field.polls-fusion-duration {
+    margin-top: 14px;
+}
+
+:is(.am-app, .am-layer) .am-modal .polls-fusion-error {
+    margin-bottom: 8px;
+    color: var(--am-danger);
+    font-size: 13px;
+}

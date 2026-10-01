@@ -4,6 +4,7 @@
 import {Client4} from 'mattermost-redux/client';
 
 import {handleMyVotes, handlePollUpdated, reloadPolls} from './actions';
+import FusionCreateDialog from './components/fusion_create_dialog';
 import PollPost from './components/poll_post';
 import manifest from './manifest';
 import reducer from './reducer';
@@ -26,6 +27,7 @@ export default class Plugin implements PluginClass {
         registry.registerReconnectHandler(() => reloadPolls(store));
 
         registry.registerPostTypeComponent(POST_TYPE, PollPost);
+        registry.registerRootComponent(FusionCreateDialog);
     }
 }
 
