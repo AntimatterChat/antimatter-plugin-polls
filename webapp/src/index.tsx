@@ -1,14 +1,22 @@
 // Copyright (c) 2026-present Antimatter contributors.
 // See LICENSE.txt for license information.
 
-import {Client4} from 'mattermost-redux/client';
+import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
-import {handleMyVotes, handlePollUpdated, reloadPolls} from './actions';
+import type {GlobalState} from '@mattermost/types/store';
+
+import {Client4} from 'mattermost-redux/client';
+import {getChannel} from 'mattermost-redux/selectors/entities/channels';
+
+import {handleMyVotes, handlePollUpdated, openCreateDialog, openPollCreation, reloadPolls} from './actions';
 import FusionCreateDialog from './components/fusion_create_dialog';
+import {messages} from './components/messages';
 import PollPost from './components/poll_post';
 import manifest from './manifest';
 import reducer from './reducer';
 import type {PluginClass, PluginRegistry, PluginStore, WebSocketMessage} from './types/host';
+import {isFusionUI} from './web_ui';
 
 import './styles.css';
 
@@ -27,7 +35,35 @@ export default class Plugin implements PluginClass {
         registry.registerReconnectHandler(() => reloadPolls(store));
 
         registry.registerPostTypeComponent(POST_TYPE, PollPost);
+        this.registerCreation(registry, store);
+    }
+
+    private registerCreation(registry: PluginRegistry, store: PluginStore) {
         registry.registerRootComponent(FusionCreateDialog);
+        const icon = <i className='icon icon-chart-bar'/>;
+        const text = <FormattedMessage {...messages.createPoll}/>;
+
+        // Hosts with the message box's "+" menu get "Create a poll" there, others in the channel header
+        if (typeof registry.registerComposerMenuItem === 'function') {
+            registry.registerComposerMenuItem({
+                text,
+                icon,
+                fusionIcon: 'poll',
+                action: ({channelId, rootId}) => openPollCreation(store, channelId, rootId),
+                shouldRender: (state: GlobalState, {channelId}) => getChannel(state, channelId)?.delete_at === 0,
+            });
+        } else {
+            registry.registerChannelHeaderButtonAction(icon, (channel) => openPollCreation(store, channel.id), text, text);
+        }
+
+        // In Fusion, /poll without arguments opens the plugin's dialog rather than the server's
+        registry.registerSlashCommandWillBePostedHook?.(async (message, args) => {
+            if (isFusionUI() && message.trim() === '/poll') {
+                store.dispatch(openCreateDialog(args.channel_id, args.root_id));
+                return {};
+            }
+            return {message, args};
+        });
     }
 }
 

@@ -5,6 +5,8 @@ import type {AnyAction} from 'redux';
 
 import type {GlobalState} from '@mattermost/types/store';
 
+import {getChannel} from 'mattermost-redux/selectors/entities/channels';
+import {getCurrentTeamId} from 'mattermost-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'mattermost-redux/selectors/entities/users';
 
 import {CLOSE_CREATE_DIALOG, OPEN_CREATE_DIALOG, RECEIVED_MY_VOTES, RECEIVED_POLL} from './action_types';
@@ -12,6 +14,7 @@ import * as client from './client';
 import {getPluginState, getPoll, myVotesFromVoters} from './selectors';
 import type {WebSocketMessage} from './types/host';
 import type {Poll} from './types/poll';
+import {isFusionUI} from './web_ui';
 
 export type GetState = () => GlobalState;
 export type Dispatch = (action: AnyAction) => unknown;
@@ -97,4 +100,20 @@ export function openCreateDialog(channelId: string, rootId?: string): AnyAction 
 
 export function closeCreateDialog(): AnyAction {
     return {type: CLOSE_CREATE_DIALOG};
+}
+
+// openPollCreation opens the poll creation dialog for a channel or thread: the plugin's own in the
+// Fusion UI, else the server's (an interactive dialog, opened by running /poll).
+export async function openPollCreation(store: Store, channelId: string, rootId?: string) {
+    if (isFusionUI()) {
+        store.dispatch(openCreateDialog(channelId, rootId));
+        return;
+    }
+    const state = store.getState();
+    const teamId = getChannel(state, channelId)?.team_id || getCurrentTeamId(state);
+    try {
+        await client.openServerDialog(teamId, channelId, rootId);
+    } catch (err) {
+        logError('failed to open the poll dialog', err);
+    }
 }
