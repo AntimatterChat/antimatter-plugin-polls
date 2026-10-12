@@ -49,10 +49,13 @@ func (p *Plugin) writeJSON(w http.ResponseWriter, status int, v any) {
 
 func (p *Plugin) writeError(w http.ResponseWriter, err error) {
 	status := statusFor(err)
+	message := err.Error()
 	if status >= http.StatusInternalServerError {
-		p.API.LogError("Polls request failed", "err", err.Error())
+		// The details of internal errors go to the log, not to the user
+		p.API.LogError("Polls request failed", "err", message)
+		message = "internal error, please try again"
 	}
-	p.writeJSON(w, status, map[string]string{"error": err.Error()})
+	p.writeJSON(w, status, map[string]string{"error": message})
 }
 
 func readJSON(w http.ResponseWriter, r *http.Request, v any) error {

@@ -128,6 +128,7 @@ func TestAPICreatePoll(t *testing.T) {
 
 		w := e.request(t, alice, http.MethodPost, "/api/v1/polls", map[string]any{"channel_id": channel.Id, "question": "Q", "options": []string{"A", "B"}})
 		require.Equal(t, http.StatusInternalServerError, w.Code)
+		assert.NotContains(t, w.Body.String(), "boom")
 		assert.Empty(t, e.kv.data)
 	})
 }
