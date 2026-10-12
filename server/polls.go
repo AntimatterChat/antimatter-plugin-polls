@@ -77,8 +77,8 @@ func (p *Plugin) createPoll(userID, channelID, rootID string, req *PollRequest) 
 		return nil, newAPIError(http.StatusBadRequest, "archived channels can't have new polls")
 	}
 	if rootID != "" {
-		root, appErr := p.API.GetPost(rootID)
-		if appErr != nil || root.ChannelId != channel.Id {
+		root, rootErr := p.API.GetPost(rootID)
+		if rootErr != nil || root.ChannelId != channel.Id {
 			return nil, newAPIError(http.StatusBadRequest, "the thread isn't in this channel")
 		}
 		if root.RootId != "" {

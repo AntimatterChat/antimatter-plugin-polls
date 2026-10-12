@@ -153,8 +153,10 @@ func splitArgs(s string) ([]argToken, error) {
 			continue
 		}
 		if closing, ok := closingQuote[r]; ok {
+			// Phones and macOS may close a straight quote with a curly one
+			closes := func(c rune) bool { return c == closing || (r == '"' && c == '”') }
 			end := i + 1
-			for end < len(runes) && runes[end] != closing && !(r == '"' && runes[end] == '”') {
+			for end < len(runes) && !closes(runes[end]) {
 				end++
 			}
 			if end >= len(runes) {
