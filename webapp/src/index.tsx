@@ -17,6 +17,7 @@ import manifest from './manifest';
 import reducer from './reducer';
 import type {PluginClass, PluginRegistry, PluginStore, WebSocketMessage} from './types/host';
 import {isFusionUI} from './web_ui';
+import {registerTranslations} from './translations';
 
 import './styles.css';
 
@@ -25,6 +26,8 @@ const POST_TYPE = 'custom_poll';
 
 export default class Plugin implements PluginClass {
     public initialize(registry: PluginRegistry, store: PluginStore) {
+        registerTranslations(registry);
+
         if (window.basename) {
             Client4.setUrl(window.basename);
         }
