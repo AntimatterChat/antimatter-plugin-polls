@@ -33,7 +33,7 @@ Upload the plugin bundle in **System Console > Plugins > Plugin Management** and
 it in the server configuration (`PluginSettings.PluginStates["com.antimatterchat.polls"].Enable`).
 The plugin has no settings.
 
-See the [documentation](https://docs.antimatter.example/polls) for more.
+See the [user guide](https://antimatter.chat/docs/users/apps.html#polls) for more.
 
 ## How it works
 
