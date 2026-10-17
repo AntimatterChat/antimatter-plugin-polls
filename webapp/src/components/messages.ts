@@ -11,7 +11,7 @@ export const messages = defineMessages({
     endsIn: {id: 'polls.ends_in', defaultMessage: 'Ends {when}'},
     closed: {id: 'polls.closed', defaultMessage: 'Final results'},
     closePoll: {id: 'polls.close', defaultMessage: 'Close poll'},
-    closeConfirm: {id: 'polls.close_confirm', defaultMessage: 'Close the poll? Nobody will be able to vote anymore.'},
+    closeConfirm: {id: 'polls.close_confirm', defaultMessage: 'Close the poll? Nobody will be able to vote any more.'},
     loading: {id: 'polls.loading', defaultMessage: 'Loading the poll…'},
     unavailable: {id: 'polls.unavailable', defaultMessage: 'This poll is no longer available.'},
     voteFailed: {id: 'polls.vote_failed', defaultMessage: "Your vote couldn't be saved: {error}"},
