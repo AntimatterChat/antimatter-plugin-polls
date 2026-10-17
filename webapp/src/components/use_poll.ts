@@ -19,6 +19,7 @@ import {closePoll, loadMissingUsers, loadPoll, logError, toggleVote, type Store}
 import {endsIn, getPoll} from '../selectors';
 import type {Poll} from '../types/poll';
 
+import {confirmDialog} from './fusion/confirm_dialog';
 import {messages} from './messages';
 
 // usePoll returns a poll, loading it when needed, and whether it couldn't be loaded.
@@ -73,6 +74,23 @@ export function usePollActions(poll: Poll) {
     }, [poll.id, store, run]);
 
     return {vote, close, busy, error, canClose: canClose && !poll.closed};
+}
+
+// useConfirmedClose returns what the Close poll button does: ask first (Fusion's dialog, or the browser's under the
+// classic UI), then close the poll.
+export function useConfirmedClose(close: () => void) {
+    const {formatMessage} = useIntl();
+    return useCallback(async () => {
+        const yes = await confirmDialog({
+            title: formatMessage(messages.closeConfirmTitle),
+            message: formatMessage(messages.closeConfirmLead),
+            confirmLabel: formatMessage(messages.closePoll),
+            cancelLabel: formatMessage(messages.cancel),
+        });
+        if (yes) {
+            close();
+        }
+    }, [close, formatMessage]);
 }
 
 // canClosePoll tells whether the user can close the poll, like the server decides: its creator,

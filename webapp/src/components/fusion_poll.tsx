@@ -10,8 +10,9 @@ import {percent} from '../selectors';
 import type {Poll} from '../types/poll';
 
 import FusionIcon from './fusion_icon';
+import {tip} from './fusion/tip';
 import {messages} from './messages';
-import {useEndsIn, usePollActions, useVoters, useVotersLabel} from './use_poll';
+import {useConfirmedClose, useEndsIn, usePollActions, useVoters, useVotersLabel} from './use_poll';
 
 const MAX_FACES = 3;
 
@@ -32,6 +33,7 @@ type Props = {
 export default function FusionPoll({poll}: Props) {
     const {formatMessage, formatRelativeTime} = useIntl();
     const {vote, close, busy, error, canClose} = usePollActions(poll);
+    const confirmClose = useConfirmedClose(close);
     const voters = useVoters(poll);
     const votersLabel = useVotersLabel();
     const {left, ended} = useEndsIn(poll);
@@ -55,6 +57,7 @@ export default function FusionPoll({poll}: Props) {
                 const mine = poll.my_votes.includes(i);
                 const pct = percent(poll, i);
                 const known = (option.voters || []).filter((id) => voters[id]);
+                const votedBy = votersLabel(known.map((id) => voters[id].name));
                 return (
                     <button
                         key={option.text}
@@ -62,7 +65,7 @@ export default function FusionPoll({poll}: Props) {
                         className={'am-poll-opt' + (mine ? ' am-mine' : '') + (poll.multi ? ' am-multi' : '')}
                         aria-pressed={mine}
                         aria-label={formatMessage(messages.option, {text: option.text, percent: pct})}
-                        title={votersLabel(known.map((id) => voters[id].name))}
+                        {...(votedBy ? tip(votedBy) : {})}
                         disabled={closed || busy}
                         onClick={() => vote(i)}
                     >
@@ -102,12 +105,7 @@ export default function FusionPoll({poll}: Props) {
                         type='button'
                         className='polls-fusion-close'
                         disabled={busy}
-                        onClick={() => {
-                            // eslint-disable-next-line no-alert
-                            if (window.confirm(formatMessage(messages.closeConfirm))) {
-                                close();
-                            }
-                        }}
+                        onClick={confirmClose}
                     >
                         {formatMessage(messages.closePoll)}
                     </button>

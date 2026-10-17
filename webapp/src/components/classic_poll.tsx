@@ -10,7 +10,7 @@ import {percent} from '../selectors';
 import type {Poll} from '../types/poll';
 
 import {messages} from './messages';
-import {useEndsIn, usePollActions, useVoters, useVotersLabel} from './use_poll';
+import {useConfirmedClose, useEndsIn, usePollActions, useVoters, useVotersLabel} from './use_poll';
 
 const MAX_FACES = 3;
 
@@ -23,6 +23,7 @@ type Props = {
 export default function ClassicPoll({poll}: Props) {
     const {formatMessage, formatRelativeTime} = useIntl();
     const {vote, close, busy, error, canClose} = usePollActions(poll);
+    const confirmClose = useConfirmedClose(close);
     const voters = useVoters(poll);
     const votersLabel = useVotersLabel();
     const {left, ended} = useEndsIn(poll);
@@ -88,12 +89,7 @@ export default function ClassicPoll({poll}: Props) {
                         type='button'
                         className='polls-card__close'
                         disabled={busy}
-                        onClick={() => {
-                            // eslint-disable-next-line no-alert
-                            if (window.confirm(formatMessage(messages.closeConfirm))) {
-                                close();
-                            }
-                        }}
+                        onClick={confirmClose}
                     >
                         {formatMessage(messages.closePoll)}
                     </button>

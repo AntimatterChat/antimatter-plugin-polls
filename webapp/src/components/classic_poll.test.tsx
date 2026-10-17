@@ -67,6 +67,18 @@ describe('ClassicPoll', () => {
         expect(screen.getByText('Ends in 2 days')).toBeInTheDocument();
         fireEvent.click(screen.getByText('Close poll'));
         await waitFor(() => expect(mockedClient.closePoll).toHaveBeenCalledWith('poll1'));
+
+        // The classic UI keeps the browser's confirmation.
+        expect(window.confirm).toHaveBeenCalledWith('Close the poll?\n\nNobody will be able to vote any more, and the results stay as they are.');
+    });
+
+    it('stays open when its creator thinks again', async () => {
+        jest.spyOn(window, 'confirm').mockReturnValue(false);
+        renderPoll();
+
+        fireEvent.click(screen.getByText('Close poll'));
+        await waitFor(() => expect(window.confirm).toHaveBeenCalled());
+        expect(mockedClient.closePoll).not.toHaveBeenCalled();
     });
 
     it('lets channel admins close it', () => {
