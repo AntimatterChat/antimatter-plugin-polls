@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonym",
   "polls.close": "Stäng omröstning",
   "polls.close_confirm": "Stäng omröstningen? Ingen kan rösta längre.",
+  "polls.close_confirm.lead": "Ingen kan rösta längre, och resultaten förblir oförändrade.",
+  "polls.close_confirm.title": "Stäng omröstningen?",
   "polls.close_failed": "Omröstningen kunde inte stängas: {error}",
   "polls.closed": "Slutresultat",
   "polls.create": "Skapa omröstning",

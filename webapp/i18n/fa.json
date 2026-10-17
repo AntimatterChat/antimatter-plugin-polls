@@ -3,6 +3,8 @@
   "polls.anonymous": "بی‌نام",
   "polls.close": "بستن نظرسنجی",
   "polls.close_confirm": "نظرسنجی بسته شود؟ دیگر کسی نمی‌تواند رأی دهد.",
+  "polls.close_confirm.lead": "دیگه هیچ‌کس نمی‌تونه رأی بده و نتایج همون‌طور که هستن می‌مونن.",
+  "polls.close_confirm.title": "نظرسنجی رو ببندیم؟",
   "polls.close_failed": "نظرسنجی بسته نشد: {error}",
   "polls.closed": "نتایج نهایی",
   "polls.create": "ایجاد نظرسنجی",

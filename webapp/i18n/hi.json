@@ -3,6 +3,8 @@
   "polls.anonymous": "गुमनाम",
   "polls.close": "पोल बंद करें",
   "polls.close_confirm": "क्या आप पोल बंद करना चाहते हैं? अब कोई भी वोट नहीं कर पाएगा।",
+  "polls.close_confirm.lead": "अब कोई भी वोट नहीं कर पाएगा, और परिणाम वैसे ही रहेंगे।",
+  "polls.close_confirm.title": "पोल बंद करें?",
   "polls.close_failed": "पोल बंद नहीं की जा सकी: {error}",
   "polls.closed": "अंतिम परिणाम",
   "polls.create": "पोल बनाएं",

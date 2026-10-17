@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonimowo",
   "polls.close": "Zamknij ankietę",
   "polls.close_confirm": "Zamknąć ankietę? Nikt nie będzie mógł już głosować.",
+  "polls.close_confirm.lead": "Nikt nie będzie mógł już głosować, a wyniki pozostaną bez zmian.",
+  "polls.close_confirm.title": "Zamknąć ankietę?",
   "polls.close_failed": "Nie udało się zamknąć ankiety: {error}",
   "polls.closed": "Wyniki końcowe",
   "polls.create": "Utwórz ankietę",

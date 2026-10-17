@@ -3,6 +3,8 @@
   "polls.anonymous": "ไม่เปิดเผยตัวตน",
   "polls.close": "ปิดโพล",
   "polls.close_confirm": "ปิดโพลหรือไม่? จะไม่มีใครสามารถโหวตได้อีกต่อไป",
+  "polls.close_confirm.lead": "ไม่มีใครสามารถโหวตได้อีกต่อไป และผลโหวตจะคงอยู่ตามเดิม",
+  "polls.close_confirm.title": "ปิดโพล?",
   "polls.close_failed": "ไม่สามารถปิดโพลได้: {error}",
   "polls.closed": "ผลสุดท้าย",
   "polls.create": "สร้างโพล",

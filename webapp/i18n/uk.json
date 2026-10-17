@@ -3,6 +3,8 @@
   "polls.anonymous": "Анонімно",
   "polls.close": "Закрити опитування",
   "polls.close_confirm": "Закрити опитування? Ніхто більше не зможе голосувати.",
+  "polls.close_confirm.lead": "Ніхто більше не зможе голосувати, а результати залишаться незмінними.",
+  "polls.close_confirm.title": "Закрити опитування?",
   "polls.close_failed": "Не вдалося закрити опитування: {error}",
   "polls.closed": "Підсумкові результати",
   "polls.create": "Створити опитування",

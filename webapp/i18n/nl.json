@@ -3,6 +3,8 @@
   "polls.anonymous": "Anoniem",
   "polls.close": "Peiling sluiten",
   "polls.close_confirm": "Peiling sluiten? Niemand kan nog stemmen.",
+  "polls.close_confirm.lead": "Niemand kan nog stemmen en de resultaten blijven zoals ze zijn.",
+  "polls.close_confirm.title": "Peiling sluiten?",
   "polls.close_failed": "De peiling kon niet worden gesloten: {error}",
   "polls.closed": "Eindresultaten",
   "polls.create": "Peiling aanmaken",

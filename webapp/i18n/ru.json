@@ -3,6 +3,8 @@
   "polls.anonymous": "Анонимно",
   "polls.close": "Завершить опрос",
   "polls.close_confirm": "Завершить опрос? Голосовать больше не будет возможно.",
+  "polls.close_confirm.lead": "Голосовать больше не сможет никто, а результаты останутся без изменений.",
+  "polls.close_confirm.title": "Закрыть опрос?",
   "polls.close_failed": "Не удалось завершить опрос: {error}",
   "polls.closed": "Итоговые результаты",
   "polls.create": "Создать опрос",

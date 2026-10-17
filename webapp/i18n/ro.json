@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonim",
   "polls.close": "Închide sondajul",
   "polls.close_confirm": "Închizi sondajul? Nimeni nu va mai putea vota.",
+  "polls.close_confirm.lead": "Nimeni nu va mai putea vota, iar rezultatele rămân neschimbate.",
+  "polls.close_confirm.title": "Închizi sondajul?",
   "polls.close_failed": "Sondajul nu a putut fi închis: {error}",
   "polls.closed": "Rezultate finale",
   "polls.create": "Creează un sondaj",

@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonim",
   "polls.close": "Tutup Jajak Pendapat",
   "polls.close_confirm": "Tutup jajak pendapat? Tidak ada lagi yang bisa memberikan suara.",
+  "polls.close_confirm.lead": "Tidak ada lagi yang bisa memberikan suara, dan hasilnya tetap seperti sekarang.",
+  "polls.close_confirm.title": "Tutup jajak pendapat?",
   "polls.close_failed": "Jajak pendapat tidak dapat ditutup: {error}",
   "polls.closed": "Hasil Akhir",
   "polls.create": "Buat Jajak Pendapat",

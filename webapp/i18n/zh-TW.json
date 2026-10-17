@@ -3,6 +3,8 @@
   "polls.anonymous": "匿名",
   "polls.close": "結束投票",
   "polls.close_confirm": "要結束投票嗎？結束後將無法再投票。",
+  "polls.close_confirm.lead": "投票結束後，將無法再進行投票，結果將維持不變。",
+  "polls.close_confirm.title": "要結束投票嗎？",
   "polls.close_failed": "無法結束投票：{error}",
   "polls.closed": "最終結果",
   "polls.create": "建立投票",

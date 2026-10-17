@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonymous",
   "polls.close": "Isara ang poll",
   "polls.close_confirm": "Isara ang poll? Hindi na makakavoto ang sinuman.",
+  "polls.close_confirm.lead": "Hindi na makakavoto ang sinuman, at mananatili ang mga resulta.",
+  "polls.close_confirm.title": "Isara ang poll?",
   "polls.close_failed": "Hindi ma-close ang poll: {error}",
   "polls.closed": "Panghuling resulta",
   "polls.create": "Gumawa ng poll",

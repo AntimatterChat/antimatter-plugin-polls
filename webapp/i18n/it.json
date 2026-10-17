@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonimo",
   "polls.close": "Chiudi sondaggio",
   "polls.close_confirm": "Chiudere il sondaggio? Nessuno potrà più votare.",
+  "polls.close_confirm.lead": "Nessuno potrà più votare e i risultati resteranno invariati.",
+  "polls.close_confirm.title": "Chiudere il sondaggio?",
   "polls.close_failed": "Impossibile chiudere il sondaggio: {error}",
   "polls.closed": "Risultati finali",
   "polls.create": "Crea un sondaggio",

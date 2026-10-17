@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonim",
   "polls.close": "Anketi kapat",
   "polls.close_confirm": "Anket kapatılsın mı? Artık kimse oy kullanamayacak.",
+  "polls.close_confirm.lead": "Artık kimse oy kullanamayacak ve sonuçlar olduğu gibi kalacak.",
+  "polls.close_confirm.title": "Anketi kapatılsın mı?",
   "polls.close_failed": "Anket kapatılamadı: {error}",
   "polls.closed": "Nihai sonuçlar",
   "polls.create": "Anket oluştur",

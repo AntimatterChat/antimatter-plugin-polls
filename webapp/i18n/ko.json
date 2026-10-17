@@ -3,6 +3,8 @@
   "polls.anonymous": "익명",
   "polls.close": "투표 종료",
   "polls.close_confirm": "투표를 종료할까요? 더 이상 투표할 수 없습니다.",
+  "polls.close_confirm.lead": "이후로는 더 이상 투표할 수 없으며, 결과는 그대로 유지됩니다.",
+  "polls.close_confirm.title": "투표를 종료하시겠습니까?",
   "polls.close_failed": "투표를 종료할 수 없습니다: {error}",
   "polls.closed": "최종 결과",
   "polls.create": "투표 만들기",

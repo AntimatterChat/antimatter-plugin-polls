@@ -3,6 +3,8 @@
   "polls.anonymous": "خفیہ",
   "polls.close": "پول بند کریں",
   "polls.close_confirm": "کیا آپ پول بند کرنا چاہتے ہیں؟ اب کوئی بھی ووٹ نہیں دے سکے گا۔",
+  "polls.close_confirm.lead": "اب کوئی ووٹ نہیں دے سکے گا اور نتائج اسی طرح رہیں گے۔",
+  "polls.close_confirm.title": "کیا آپ پول بند کرنا چاہتے ہیں؟",
   "polls.close_failed": "پول بند نہیں ہو سکی: {error}",
   "polls.closed": "حتمی نتائج",
   "polls.create": "پول بنائیں",

@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonym",
   "polls.close": "Luk afstemning",
   "polls.close_confirm": "Luk afstemningen? Ingen kan stemme længere.",
+  "polls.close_confirm.lead": "Ingen kan stemme længere, og resultaterne forbliver uændrede.",
+  "polls.close_confirm.title": "Luk afstemningen?",
   "polls.close_failed": "Afstemningen kunne ikke lukkes: {error}",
   "polls.closed": "Endelige resultater",
   "polls.create": "Opret en afstemning",

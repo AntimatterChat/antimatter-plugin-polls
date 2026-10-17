@@ -3,6 +3,8 @@
   "polls.anonymous": "Anónimo",
   "polls.close": "Cerrar encuesta",
   "polls.close_confirm": "¿Cerrar la encuesta? Ya no se podrá votar.",
+  "polls.close_confirm.lead": "Nadie podrá votar más y los resultados se mantendrán como están.",
+  "polls.close_confirm.title": "¿Cerrar la encuesta?",
   "polls.close_failed": "No se pudo cerrar la encuesta: {error}",
   "polls.closed": "Resultados finales",
   "polls.create": "Crear una encuesta",

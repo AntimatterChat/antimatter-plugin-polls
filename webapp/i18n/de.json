@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonym",
   "polls.close": "Umfrage beenden",
   "polls.close_confirm": "Umfrage beenden? Niemand kann mehr abstimmen.",
+  "polls.close_confirm.lead": "Niemand kann ab jetzt noch abstimmen, die Ergebnisse bleiben unverändert.",
+  "polls.close_confirm.title": "Umfrage schließen?",
   "polls.close_failed": "Die Umfrage konnte nicht beendet werden: {error}",
   "polls.closed": "Endgültige Ergebnisse",
   "polls.create": "Umfrage erstellen",

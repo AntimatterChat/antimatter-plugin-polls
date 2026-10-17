@@ -3,6 +3,8 @@
   "polls.anonymous": "سري",
   "polls.close": "إغلاق الاستطلاع",
   "polls.close_confirm": "هل تريد إغلاق الاستطلاع؟ لن يتمكن أي شخص من التصويت بعد الآن.",
+  "polls.close_confirm.lead": "لن يتمكن أي شخص من التصويت بعد الآن، وستبقى النتائج كما هي.",
+  "polls.close_confirm.title": "إغلاق الاستطلاع؟",
   "polls.close_failed": "تعذّر إغلاق الاستطلاع: {error}",
   "polls.closed": "النتائج النهائية",
   "polls.create": "إنشاء استطلاع",

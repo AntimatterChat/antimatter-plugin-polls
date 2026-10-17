@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonym",
   "polls.close": "Đóng bình chọn",
   "polls.close_confirm": "Đóng bình chọn? Không ai có thể bình chọn nữa.",
+  "polls.close_confirm.lead": "Không ai có thể bình chọn nữa và kết quả sẽ giữ nguyên.",
+  "polls.close_confirm.title": "Đóng bình chọn?",
   "polls.close_failed": "Không thể đóng bình chọn: {error}",
   "polls.closed": "Kết quả cuối cùng",
   "polls.create": "Tạo bình chọn",

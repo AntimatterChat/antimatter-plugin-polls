@@ -3,6 +3,8 @@
   "polls.anonymous": "Névtelen",
   "polls.close": "Szavazás bezárása",
   "polls.close_confirm": "Bezárja a szavazást? Senki nem tud többé szavazni.",
+  "polls.close_confirm.lead": "Senki nem tud többé szavazni, az eredmények pedig változatlanok maradnak.",
+  "polls.close_confirm.title": "Bezárjuk a szavazást?",
   "polls.close_failed": "Nem sikerült bezárni a szavazást: {error}",
   "polls.closed": "Végeredmény",
   "polls.create": "Szavazás létrehozása",

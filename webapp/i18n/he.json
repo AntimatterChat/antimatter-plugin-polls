@@ -3,6 +3,8 @@
   "polls.anonymous": "אנונימי",
   "polls.close": "סגירת סקר",
   "polls.close_confirm": "לסגור את הסקר? אף אחד לא יוכל להצביע יותר.",
+  "polls.close_confirm.lead": "אף אחד לא יוכל להצביע יותר, והתוצאות יישארו כפי הן.",
+  "polls.close_confirm.title": "סגירת הסקר?",
   "polls.close_failed": "לא ניתן היה לסגור את הסקר: {error}",
   "polls.closed": "תוצאות סופיות",
   "polls.create": "יצירת סקר",

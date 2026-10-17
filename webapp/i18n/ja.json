@@ -3,6 +3,8 @@
   "polls.anonymous": "匿名",
   "polls.close": "投票を終了",
   "polls.close_confirm": "投票を終了しますか？終了後は誰も投票できなくなります。",
+  "polls.close_confirm.lead": "これ以上投票できなくなり、結果はそのままで保持されます。",
+  "polls.close_confirm.title": "投票を終了しますか？",
   "polls.close_failed": "投票を終了できませんでした：{error}",
   "polls.closed": "最終結果",
   "polls.create": "投票を作成",

@@ -3,6 +3,8 @@
   "polls.anonymous": "Anònim",
   "polls.close": "Tanca l'enquesta",
   "polls.close_confirm": "Vols tancar l'enquesta? Ja no hi podrà votar ningú.",
+  "polls.close_confirm.lead": "Ja no hi haurà cap vot possible i els resultats es mantindran tal com són.",
+  "polls.close_confirm.title": "Vols tancar l'enquesta?",
   "polls.close_failed": "No s'ha pogut tancar l'enquesta: {error}",
   "polls.closed": "Resultats finals",
   "polls.create": "Crea una enquesta",

@@ -3,6 +3,8 @@
   "polls.anonymous": "Анонимно",
   "polls.close": "Затваряне на анкетата",
   "polls.close_confirm": "Затваряне на анкетата? Никой вече няма да може да гласува.",
+  "polls.close_confirm.lead": "Никой вече няма да може да гласува, а резултатите остават непроменени.",
+  "polls.close_confirm.title": "Затваряне на анкетата?",
   "polls.close_failed": "Анкета не може да бъде затворена: {error}",
   "polls.closed": "Краен резултат",
   "polls.create": "Създаване на анкета",

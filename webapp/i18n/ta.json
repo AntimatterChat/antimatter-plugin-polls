@@ -3,6 +3,8 @@
   "polls.anonymous": "அநாமதேயம்",
   "polls.close": "கரூவ் மூடு",
   "polls.close_confirm": "கரூவ் மூட வேண்டுமா? இனி யாரும் வாக்களிக்க முடியாது.",
+  "polls.close_confirm.lead": "இனி யாரும் வாக்களிக்க முடியாது; முடிவுகள் அப்படியே இருக்கும்.",
+  "polls.close_confirm.title": "கர்துத்க் கணிப்பை மூடவா?",
   "polls.close_failed": "கரூவ் மூட முடியவில்லை: {error}",
   "polls.closed": "இறுதி முடிவுகள்",
   "polls.create": "கரூவ் உருவாக்கு",

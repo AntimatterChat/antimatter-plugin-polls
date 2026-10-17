@@ -3,6 +3,8 @@
   "polls.anonymous": "অ্যানোনিমাস",
   "polls.close": "পোল বন্ধ করুন",
   "polls.close_confirm": "পোলটি বন্ধ করবেন? আর কেউ ভোট দিতে পারবে না।",
+  "polls.close_confirm.lead": "এখন আর কেউ ভোট দিতে পারবেন না, এবং ফলাফল অপরিবর্তিত থাকবে।",
+  "polls.close_confirm.title": "পোলটি বন্ধ করবেন?",
   "polls.close_failed": "পোলটি বন্ধ করা যায়নি: {error}",
   "polls.closed": "চূড়ান্ত ফলাফল",
   "polls.create": "পোল তৈরি করুন",

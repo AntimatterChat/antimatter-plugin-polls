@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonyymi",
   "polls.close": "Sulje kysely",
   "polls.close_confirm": "Suljetaanko kysely? Äänestys ei ole enää mahdollista.",
+  "polls.close_confirm.lead": "Kukaan ei voi enää äänestää, ja tulokset pysyvät ennallaan.",
+  "polls.close_confirm.title": "Suljetaanko kysely?",
   "polls.close_failed": "Kyselyä ei voitu sulkea: {error}",
   "polls.closed": "Lopputulokset",
   "polls.create": "Luo kysely",

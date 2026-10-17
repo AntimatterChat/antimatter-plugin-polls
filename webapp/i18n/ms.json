@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonim",
   "polls.close": "Tutup undian",
   "polls.close_confirm": "Tutup undian? Tiada seorang pun boleh mengundi lagi.",
+  "polls.close_confirm.lead": "Tiada seorang pun boleh mengundi lagi, dan keputusan kekal seperti sedia ada.",
+  "polls.close_confirm.title": "Tutup undian?",
   "polls.close_failed": "Undian tidak dapat ditutup: {error}",
   "polls.closed": "Keputusan akhir",
   "polls.create": "Cipta undian",

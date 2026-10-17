@@ -3,6 +3,8 @@
   "polls.anonymous": "Anonymní",
   "polls.close": "Uzavřít hlasování",
   "polls.close_confirm": "Uzavřete hlasování? Nikdo už nebude moci hlasovat.",
+  "polls.close_confirm.lead": "Nikdo už nebude moci hlasovat a výsledky zůstanou tak, jak jsou.",
+  "polls.close_confirm.title": "Zavřít hlasování?",
   "polls.close_failed": "Hlasování se nepodařilo uzavřít: {error}",
   "polls.closed": "Výsledky",
   "polls.create": "Vytvořit hlasování",
