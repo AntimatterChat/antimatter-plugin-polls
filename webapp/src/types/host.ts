@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import type React from 'react';
+import type {IntlShape} from 'react-intl';
 import type {Reducer, Store} from 'redux';
 
 import type {Channel} from '@mattermost/types/channels';
@@ -13,6 +14,22 @@ import type {WebUI} from '../web_ui';
 export type ComposerMenuItemContext = {
     channelId: string;
     rootId?: string;
+};
+
+// What a composer mode's component gets from Antimatter Fusion (registerComposerMode).
+export type ComposerModeProps = {
+    channelId: string;
+    rootId?: string;
+
+    // The composer's text: the poll's question.
+    message: string;
+
+    // Sets what Send does: called with the composer's text, it resolves to nothing once sent, or to an error message
+    // the composer shows (staying in the mode).
+    setSubmit: (submit: ((message: string) => Promise<string | void>) | null) => void;
+
+    // Back to a plain message, keeping the text.
+    onCancel: () => void;
 };
 
 export type SlashCommandArgs = {
@@ -40,6 +57,17 @@ export interface PluginRegistry {
         icon: React.ReactNode;
         fusionIcon?: string;
         action: (ctx: ComposerMenuItemContext) => void;
+        shouldRender?: (state: GlobalState, ctx: ComposerMenuItemContext) => boolean;
+    }): string;
+
+    // Antimatter Fusion: a way of writing a message in the composer other than plain text
+    registerComposerMode?(mode: {
+        id?: string;
+        label: React.ReactNode;
+        fusionIcon?: string;
+        placeholder?: string | ((intl: IntlShape) => string);
+        sendLabel?: string | ((intl: IntlShape) => string);
+        component: React.ComponentType<ComposerModeProps>;
         shouldRender?: (state: GlobalState, ctx: ComposerMenuItemContext) => boolean;
     }): string;
 }

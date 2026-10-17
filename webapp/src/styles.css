@@ -225,3 +225,148 @@
     color: var(--am-danger);
     font-size: 13px;
 }
+
+/* Antimatter Fusion: the poll written in the composer (poll_composer_mode.tsx), under its text box (the question):
+   the answers, then a compact row with "Add answer" and the poll's settings. Fusion's tokens, so both themes. */
+:is(.am-app, .am-layer) .polls-cmode-answers {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+:is(.am-app, .am-layer) .polls-cmode-answers li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 32px;
+    padding: 0 2px 0 8px;
+    border: 1px solid var(--am-line);
+    border-radius: 8px;
+    background: var(--am-main);
+}
+
+:is(.am-app, .am-layer) .polls-cmode-answers li:focus-within {
+    border-color: var(--am-matter);
+}
+
+/* A radio's circle, or a checkbox's square when voters may pick several answers */
+:is(.am-app, .am-layer) .polls-cmode-mark {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid var(--am-muted);
+    border-radius: 50%;
+}
+
+:is(.am-app, .am-layer) .polls-cmode-multi .polls-cmode-mark {
+    border-radius: 3px;
+}
+
+:is(.am-app, .am-layer) .polls-cmode-answers input {
+    flex: 1;
+    min-width: 0;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--am-text);
+    font: inherit;
+    font-size: 14px;
+}
+
+:is(.am-app, .am-layer) .polls-cmode-answers input::placeholder {
+    color: var(--am-muted);
+}
+
+:is(.am-app, .am-layer) .polls-cmode-remove {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    color: var(--am-muted);
+}
+
+:is(.am-app, .am-layer) .polls-cmode-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+:is(.am-app, .am-layer) .polls-cmode-grow {
+    flex: 1;
+}
+
+:is(.am-app, .am-layer) :is(.polls-cmode-add, .polls-cmode-toggle, .polls-cmode-duration) {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 28px;
+    padding: 0 10px;
+    border: 1px solid var(--am-line);
+    border-radius: 14px;
+    background: none;
+    color: var(--am-text-2);
+    font: 600 12.5px var(--am-font-ui);
+    white-space: nowrap;
+}
+
+:is(.am-app, .am-layer) .polls-cmode-add {
+    border-style: dashed;
+}
+
+:is(.am-app, .am-layer) :is(.polls-cmode-add, .polls-cmode-toggle):hover {
+    background: var(--am-hover);
+    color: var(--am-text);
+}
+
+:is(.am-app, .am-layer) .polls-cmode-toggle[aria-pressed="true"] {
+    border-color: var(--am-matter);
+    background: var(--am-matter-soft);
+    color: var(--am-text);
+}
+
+:is(.am-app, .am-layer) .polls-cmode-duration select {
+    height: 26px;
+    padding: 0 2px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    color-scheme: light dark;
+}
+
+:is(.am-app, .am-layer) :is(.polls-cmode-add, .polls-cmode-toggle, .polls-cmode-remove):focus-visible,
+:is(.am-app, .am-layer) .polls-cmode-duration:focus-within {
+    outline: 2px solid var(--am-matter);
+    outline-offset: 1px;
+}
+
+@media (max-width: 640px) {
+    :is(.am-app, .am-layer) .polls-cmode-answers li {
+        min-height: 40px;
+    }
+
+    :is(.am-app, .am-layer) .polls-cmode-answers input {
+        height: 38px;
+        font-size: 16px;
+    }
+
+    :is(.am-app, .am-layer) .polls-cmode-remove {
+        width: 36px;
+        height: 36px;
+    }
+
+    :is(.am-app, .am-layer) .polls-cmode-grow {
+        display: none;
+    }
+
+    :is(.am-app, .am-layer) :is(.polls-cmode-add, .polls-cmode-toggle, .polls-cmode-duration) {
+        height: 36px;
+        border-radius: 18px;
+    }
+}

@@ -52,4 +52,26 @@ export const messages = defineMessages({
     tooManyAnswers: {id: 'polls.create.too_many', defaultMessage: 'Polls can have up to 10 answers'},
     needTwoAnswers: {id: 'polls.create.need_two', defaultMessage: 'A poll needs at least two answers'},
     createFailed: {id: 'polls.create.failed', defaultMessage: "The poll couldn't be created: {error}"},
+
+    // Antimatter Fusion: the poll written in the composer (poll_composer_mode.tsx)
+    needQuestion: {
+        id: 'polls.compose.need_question',
+        defaultMessage: 'Write the question in the message box first',
+        description: 'Error in the composer when a poll is posted without a question; the question is the text typed in the message box above the answers.',
+    },
+    questionTooLong: {
+        id: 'polls.compose.question_too_long',
+        defaultMessage: 'The question can be up to {max} characters',
+        description: 'Error in the composer when a poll\'s question (the message box text) is too long; {max} is a number.',
+    },
+    multiShort: {
+        id: 'polls.compose.multi',
+        defaultMessage: 'Several answers',
+        description: 'Short toggle under a poll being written in the composer: voters may pick more than one answer.',
+    },
+    settings: {
+        id: 'polls.compose.settings',
+        defaultMessage: 'Poll settings',
+        description: 'Accessible name of the row of a poll\'s settings (several answers, anonymous, duration) under its answers in the composer.',
+    },
 });

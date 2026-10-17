@@ -1,11 +1,14 @@
 // Copyright (c) 2026-present Antimatter contributors.
 // See LICENSE.txt for license information.
 
+import {createIntl} from 'react-intl';
+
 import type {GlobalState} from '@mattermost/types/store';
 
 import {makeState, makeStore} from '../tests/utils';
 
 import * as client from './client';
+import PollComposerMode, {POLL_MODE_ID} from './components/poll_composer_mode';
 
 import {getCreateDialog} from './selectors';
 import type {PluginRegistry} from './types/host';
@@ -16,7 +19,7 @@ jest.mock('./client');
 
 const mockedClient = client as jest.Mocked<typeof client>;
 
-function makeRegistry(withComposerMenu: boolean) {
+function makeRegistry(withComposerMenu: boolean, withComposerMode = false) {
     const registry = {
         registerReducer: jest.fn(),
         registerWebSocketEventHandler: jest.fn(),
@@ -26,6 +29,7 @@ function makeRegistry(withComposerMenu: boolean) {
         registerChannelHeaderButtonAction: jest.fn(),
         registerSlashCommandWillBePostedHook: jest.fn(),
         registerComposerMenuItem: withComposerMenu ? jest.fn() : undefined,
+        registerComposerMode: withComposerMode ? jest.fn() : undefined,
     };
     return registry as typeof registry & PluginRegistry;
 }
@@ -83,5 +87,50 @@ describe('Plugin', () => {
         window.antimatterWebUI = 'fusion';
         expect(await hook('/poll ', args)).toEqual({});
         expect(getCreateDialog(store.getState())).toEqual({channelId: 'channel1'});
+    });
+
+    describe('in Fusion, with composer modes', () => {
+        it('writes the poll in the composer: a mode in its "+" menu, not a menu item opening a dialog', () => {
+            const registry = makeRegistry(true, true);
+            new Plugin().initialize(registry, makeStore(makeState()));
+
+            expect(registry.registerComposerMenuItem).not.toHaveBeenCalled();
+            expect(registry.registerChannelHeaderButtonAction).not.toHaveBeenCalled();
+            const mode = registry.registerComposerMode!.mock.calls[0][0];
+            expect(mode.id).toBe(POLL_MODE_ID);
+            expect(mode.fusionIcon).toBe('poll');
+            expect(mode.component).toBe(PollComposerMode);
+
+            const intl = createIntl({locale: 'en', defaultLocale: 'en', onError: () => null});
+            expect(typeof mode.placeholder === 'function' && mode.placeholder(intl)).toBe('What should we decide?');
+            expect(typeof mode.sendLabel === 'function' && mode.sendLabel(intl)).toBe('Post poll');
+
+            const state = {entities: {channels: {channels: {
+                open: {id: 'open', delete_at: 0},
+                archived: {id: 'archived', delete_at: 5},
+            }}}} as unknown as GlobalState;
+            expect(mode.shouldRender!(state, {channelId: 'open'})).toBe(true);
+            expect(mode.shouldRender!(state, {channelId: 'archived'})).toBe(false);
+        });
+
+        it('/poll opens the poll in the composer it was typed in', async () => {
+            const registry = makeRegistry(true, true);
+            const store = makeStore(makeState());
+            new Plugin().initialize(registry, store);
+            const hook = registry.registerSlashCommandWillBePostedHook!.mock.calls[0][0];
+            const opened = jest.fn();
+            window.addEventListener('am-composer-mode', opened);
+
+            window.antimatterWebUI = 'fusion';
+            expect(await hook('/poll', {channel_id: 'channel1', root_id: 'root1'})).toEqual({});
+            expect(opened).toHaveBeenCalledTimes(1);
+            expect((opened.mock.calls[0][0] as CustomEvent).detail).toEqual({id: POLL_MODE_ID, channelId: 'channel1', rootId: 'root1'});
+
+            // Not the plugin's dialog; and /poll with arguments still goes to the server.
+            expect(getCreateDialog(store.getState())).toBeNull();
+            const args = {channel_id: 'channel1', root_id: ''};
+            expect(await hook('/poll "Q" "A" "B"', args)).toEqual({message: '/poll "Q" "A" "B"', args});
+            window.removeEventListener('am-composer-mode', opened);
+        });
     });
 });
