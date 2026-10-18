@@ -31,7 +31,7 @@ function renderMode(rootId?: string) {
         makeStore(makeState()),
     );
     const send = async (message: string) => {
-        let result: string | void = undefined;
+        let result: string | void;
         await act(async () => {
             result = await submit!(message);
         });
@@ -70,7 +70,7 @@ describe('PollComposerMode', () => {
         fireEvent.click(screen.getByRole('button', {name: 'Anonymous'}));
         fireEvent.change(screen.getByRole('combobox', {name: 'Duration'}), {target: {value: '480'}});
 
-        expect(await send(' Lunch? ')).toBeUndefined();
+        expect(await send(' Lunch? ')).toBe('');
         expect(mockedClient.createPoll).toHaveBeenCalledWith({
             channel_id: 'channel1',
             root_id: 'root1',

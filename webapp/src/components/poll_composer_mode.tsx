@@ -27,6 +27,9 @@ const DEFAULT_DURATION = 24 * 60;
 
 type Answer = {id: number; text: string};
 
+// The answers written, without the empty ones.
+const written = (answers: Answer[]) => answers.map((a) => a.text.trim()).filter(Boolean);
+
 // pollProblem says what keeps a poll from being posted, if anything: the message to show.
 export function pollProblem(question: string, options: string[]): keyof typeof PROBLEMS | '' {
     if (!question) {
@@ -70,7 +73,7 @@ export default function PollComposerMode({channelId, rootId, setSubmit}: Compose
     useEffect(() => {
         setSubmit(async (message) => {
             const question = message.trim();
-            const options = answers.map((a) => a.text.trim()).filter(Boolean);
+            const options = written(answers);
             const problem = pollProblem(question, options);
             if (problem) {
                 return formatMessage(PROBLEMS[problem], {max: MAX_QUESTION});
@@ -85,7 +88,9 @@ export default function PollComposerMode({channelId, rootId, setSubmit}: Compose
                     anonymous,
                     duration_minutes: duration,
                 });
-                return undefined;
+
+                // Nothing to show: posted.
+                return '';
             } catch (err) {
                 logError('failed to create a poll', err);
                 return formatMessage(messages.createFailed, {error: (err as Error).message});
@@ -99,7 +104,7 @@ export default function PollComposerMode({channelId, rootId, setSubmit}: Compose
             return;
         }
         const answer = {id: nextId.current++, text: ''};
-        const at = after === undefined ? answers.length : answers.findIndex((a) => a.id === after) + 1;
+        const at = typeof after === 'undefined' ? answers.length : answers.findIndex((a) => a.id === after) + 1;
         setAnswers([...answers.slice(0, at), answer, ...answers.slice(at)]);
         setFocusId(answer.id);
     };

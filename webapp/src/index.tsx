@@ -82,7 +82,7 @@ export default class Plugin implements PluginClass {
         registry.registerSlashCommandWillBePostedHook?.(async (message, args) => {
             if (isFusionUI() && message.trim() === '/poll') {
                 if (composerMode) {
-                    window.dispatchEvent(new CustomEvent(COMPOSER_MODE_EVENT, {detail: {id: POLL_MODE_ID, channelId: args.channel_id, rootId: args.root_id || undefined}}));
+                    window.dispatchEvent(new CustomEvent(COMPOSER_MODE_EVENT, {detail: {id: POLL_MODE_ID, channelId: args.channel_id, ...(args.root_id ? {rootId: args.root_id} : {})}}));
                 } else {
                     store.dispatch(openCreateDialog(args.channel_id, args.root_id));
                 }
