@@ -31,11 +31,11 @@ function renderMode(rootId?: string) {
         makeStore(makeState()),
     );
     const send = async (message: string) => {
-        let result: string | void;
+        const results: Array<string | void> = [];
         await act(async () => {
-            result = await submit!(message);
+            results.push(await submit!(message));
         });
-        return result;
+        return results[0];
     };
     return {...view, setSubmit, send, current: () => submit};
 }
